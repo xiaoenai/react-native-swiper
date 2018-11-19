@@ -208,7 +208,9 @@ export default class extends Component {
 
   componentWillUpdate (nextProps, nextState) {
     // If the index has changed, we notify the parent via the onIndexChanged callback
-    if (this.state.index !== nextState.index) this.props.onIndexChanged(nextState.index)
+    if (this.props.index !== nextProps.index) {
+      this.setState(this.initState(nextProps, this.props.index !== nextProps.index))
+    }
   }
 
   initState (props, updateIndex = false) {
